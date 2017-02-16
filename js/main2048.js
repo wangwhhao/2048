@@ -87,28 +87,23 @@ function generateOneNumber(){
         return false;
     }
     //随机位置
-    var randx=parseInt(Math.floor(Math.random()*4));
-    var randy=parseInt(Math.floor(Math.random()*4));
-    var times=0;
-    while(times<50){
-        if(board[randx][randy]==0){
-            break;
-        }else{
-            var randx=parseInt(Math.floor(Math.random()*4));
-            var randy=parseInt(Math.floor(Math.random()*4));
-        }
-        times++;
-    }
-    if(times==50){
-        for(var i=0;i<4;i++){
-            for(var j=0;j<4;j++){
-                if(board[i][j]==0){
-                    randx=i;
-                    randy=j;
-                }
+    var tempObj = [];
+
+    for(var i=0;i<4;i++){
+
+        for(var j=0;j<4;j++){
+
+            if(board[i][j] == 0){
+
+                tempObj.push(i+","+j);
+
             }
         }
     }
+
+    var randNum = parseInt(Math.floor(Math.random()*tempObj.length)),
+    randx = parseInt(tempObj[randNum].split(",")[0]),
+    randy = parseInt(tempObj[randNum].split(",")[1]);
     //随机数字
     var randNumber=Math.random() < 0.5 ? 2 : 4;
     //在随机位置显示随机数字
